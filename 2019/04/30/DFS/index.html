@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://silemie.github.io">
-  <title>Mie&#39;s</title>
+  <title>Bread-First-Search and Depth-First-Search | Mie&#39;s</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mie&#39;s">
-<meta property="og:url" content="http://silemie.github.io/index.html">
+  <meta name="description" content="Graph一般图算法的输入：|V| 和 |E| （G = (V, E)）图的表示：  链表：多用于稀疏图，即|E|远小于|V|^2。对于有向图来说，所有链表长度和为|E|；对于无向图来说，所有链表长度和为2|E|。链表占用空间O(V+E)。链表无法快速判断有无包含一条edge，因此我们引入矩阵。 矩阵：多用于稠密图，即即|E|接近|V|^2。矩阵占用空间O(V^2)。无向图可以只存对角线以上部分，">
+<meta name="keywords" content="Algorithm,BFS,DFS,Graph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bread-First-Search and Depth-First-Search">
+<meta property="og:url" content="http://silemie.github.io/2019/04/30/DFS/index.html">
 <meta property="og:site_name" content="Mie&#39;s">
+<meta property="og:description" content="Graph一般图算法的输入：|V| 和 |E| （G = (V, E)）图的表示：  链表：多用于稀疏图，即|E|远小于|V|^2。对于有向图来说，所有链表长度和为|E|；对于无向图来说，所有链表长度和为2|E|。链表占用空间O(V+E)。链表无法快速判断有无包含一条edge，因此我们引入矩阵。 矩阵：多用于稠密图，即即|E|接近|V|^2。矩阵占用空间O(V^2)。无向图可以只存对角线以上部分，">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-30T20:56:54.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mie&#39;s">
+<meta name="twitter:title" content="Bread-First-Search and Depth-First-Search">
+<meta name="twitter:description" content="Graph一般图算法的输入：|V| 和 |E| （G = (V, E)）图的表示：  链表：多用于稀疏图，即|E|远小于|V|^2。对于有向图来说，所有链表长度和为|E|；对于无向图来说，所有链表长度和为2|E|。链表占用空间O(V+E)。链表无法快速判断有无包含一条edge，因此我们引入矩阵。 矩阵：多用于稠密图，即即|E|接近|V|^2。矩阵占用空间O(V^2)。无向图可以只存对角线以上部分，">
   
     <link rel="alternative" href="/atom.xml" title="Mie&#39;s" type="application/atom+xml">
   
@@ -150,16 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-DFS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-DFS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/DFS/">Bread-First-Search and Depth-First-Search</a>
+    <h1 class="article-title" itemprop="name">
+      Bread-First-Search and Depth-First-Search
     </h1>
   
 
@@ -205,6 +208,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -235,16 +259,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/30/DFS/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://silemie.github.io/2019/04/30/DFS/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/11/ocamlbasics/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Basic OCmal</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -264,209 +347,14 @@
 
 
 
-
   
-    <article id="post-ocamlbasics" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/ocamlbasics/">Basic OCmal</a>
-    </h1>
   
 
-        
-        <a href="/2019/04/11/ocamlbasics/" class="archive-article-date">
-  	<time datetime="2019-04-12T02:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Basic-OCaml-Notes"><a href="#Basic-OCaml-Notes" class="headerlink" title="Basic OCaml Notes"></a>Basic OCaml Notes</h1><p>Compilation</p>
-<p><code>xxx.ml</code> -&gt; <code>ocamlbuild xxx.native</code> -&gt; <code>./xxx.native</code></p>
-<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><p><strong>Calling functions</strong></p>
-<p>No brackets and no comma between the arguments</p>
-<p>（ “hello”, 3 ）is type of （’a * ‘ b）</p>
-<p><strong>Define functions</strong></p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> average a b = </span><br><span class="line">	(a+. b) /. <span class="number">2.0</span> ;;</span><br><span class="line"><span class="comment">(*val average: float -&gt; float -&gt; float = &lt;fun&gt;*)</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>OCaml is a strongly <em>statically typed</em> languageå</li>
-<li>OCaml uses <em>type inference</em> to work out the types, so you don’t have to.</li>
-<li>OCaml doesn’t do any implicit casting. If you want a float, you have to write <code>2.0</code>because <code>2</code> is an integer. <strong>No automatic conversion</strong></li>
-<li>As a side-effect of type inference in OCaml, functions (including operators) can’t have overloaded definitions. OCaml defines <code>+</code> as the <em>integer</em> addition function. To add floats, use <code>+.</code> (note the trailing period). Similarly, use <code>-.</code>, <code>*.</code>, <code>/.</code> for other float operations</li>
-<li>OCaml doesn’t have a <code>return</code> keyword — the last expression in a function becomes the result of the function automatically.</li>
-</ol>
-<p><strong>Recursive Functions</strong></p>
-<p> <code>let rect</code> - please explicitly say</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">rec</span> range a b = </span><br><span class="line">	<span class="keyword">if</span> a &gt; b <span class="keyword">then</span> <span class="literal">[]</span></span><br><span class="line">	<span class="keyword">else</span> a :: range (a+<span class="number">1</span>) b</span><br><span class="line"><span class="comment">(*val range: int -&gt; int -&gt; int list = fun*)</span></span><br></pre></td></tr></table></figure>
-<h3 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h3><p>Int    31-bit signed int - 32 processors / 63-bit signed int - 64 processors</p>
-<p>​        use 1 bit to automatically manage the memory use (garbage collection)</p>
-<p>​        no unsigned interger type - using <code>nativeint</code></p>
-<p>Float    IEEE double-precison (same as C)</p>
-<p>Bool    true or false</p>
-<p>Char    8-bit char (dont support Unicode or UTF-8) <strong>Serious flaw</strong></p>
-<p>Unit    written as ( ) (same as void in C)</p>
-<p><strong>Never</strong> implicit casts - <code>1+2.5</code> is a type error - <code>+</code> operator requires two ints as arguments. </p>
-<p><code>(float_of_int i) +. f</code> - shorter alias: <code>float i +. f</code></p>
-<p>Implicit vs. explicit casting? which is better?</p>
-<ol>
-<li>Type reference is such a wondeful time-saving feature</li>
-<li>errors caused by implicit casts are hard to find</li>
-<li>Some casts are expensive operations (i.e. int <-> float)</-></li>
-</ol>
-<h3 id="Types-of-Functions"><a href="#Types-of-Functions" class="headerlink" title="Types of Functions"></a>Types of Functions</h3><p>Because of type inference you will rarely if ever need to explicitly write down the type of functions.</p>
-<p><strong>currying</strong>: <code>f: arg1 -&gt; arg2 -&gt; ... -&gt; argn -&gt; returnType</code></p>
-<p>If return nothing (void): <code>output_char: out_channel -&gt; char -&gt; unit</code></p>
-<p><strong>polymorphic functions</strong> take anything as an argument</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> give_me_a_three x = <span class="number">3</span></span><br><span class="line"><span class="comment">(*give_me_a_three: 'a -&gt; int*)</span></span><br></pre></td></tr></table></figure>
-<p><code>&#39;a</code> means <strong>any type</strong></p>
-<p><strong>Type Inference</strong></p>
-<p>Dont need to <strong>declare</strong> the types of functions and variables.</p>
-<p>OCaml figures them out &amp;&amp; checks all types match up (even across different files!) </p>
-<h3 id="Structure-of-OCaml"><a href="#Structure-of-OCaml" class="headerlink" title="Structure of OCaml"></a>Structure of OCaml</h3><p><strong>Local “Variables”</strong></p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> average a b = </span><br><span class="line">	<span class="keyword">let</span> sum = a +. b <span class="keyword">in</span> </span><br><span class="line">		sum /. <span class="number">2.0</span></span><br><span class="line"><span class="comment">(*val average: float -&gt; float -&gt; float = &lt;fun&gt;*)</span></span><br></pre></td></tr></table></figure>
-<p><code>let name = expression in</code> define a named local expression, and <code>name</code> can then be used later on in the function instead of <code>expression</code>, till a <code>;;</code></p>
-<p>This <code>sum</code> is just a shorthand name for the expression <code>a +.b</code>, you can’t assign it later or change its value in any way. </p>
-<p><strong>Global “Variables”</strong></p>
-<p>Define at the top level - still a shorthand name for things</p>
-<p><strong>Let-bindings</strong></p>
-<p>Reference: a real variable. (It is better to create a reference and <strong>name</strong> it)</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> my_ref = <span class="built_in">ref</span> <span class="number">0</span></span><br><span class="line"><span class="comment">(*val my_ref: int ref = &#123;contents = 0&#125;*)</span></span><br><span class="line">my_ref := <span class="number">100</span>;;</span><br><span class="line"><span class="comment">(* unit = ()*)</span></span><br><span class="line">!my_ref;;</span><br><span class="line"><span class="comment">(*int = 100*)</span></span><br></pre></td></tr></table></figure>
-<p><code>:=</code> is used to assign, <code>!</code> dereferences </p>
-<p><strong>Nested Functions</strong></p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> read_whole_channel chan =</span><br><span class="line">    <span class="keyword">let</span> buf = <span class="type">Buffer</span>.create <span class="number">4096</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">rec</span> loop <span class="literal">()</span> =</span><br><span class="line">      <span class="keyword">let</span> newline = input_line chan <span class="keyword">in</span></span><br><span class="line">      <span class="type">Buffer</span>.add_string buf newline;</span><br><span class="line">      <span class="type">Buffer</span>.add_char buf <span class="string">'\n'</span>;</span><br><span class="line">      loop <span class="literal">()</span></span><br><span class="line">    <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">      loop <span class="literal">()</span></span><br><span class="line">    <span class="keyword">with</span></span><br><span class="line">      <span class="type">End_of_file</span> -&gt; <span class="type">Buffer</span>.contents buf;;</span><br><span class="line"><span class="keyword">val</span> read_whole_channel : <span class="built_in">in_channel</span> -&gt; <span class="built_in">string</span> = &lt;<span class="keyword">fun</span>&gt;</span><br></pre></td></tr></table></figure>
-<p><code>let name arguments = function-definition in</code> </p>
-<p><strong>Match</strong></p>
-<p><code>match foo with ...</code></p>
-<p>The following code is perfectly legal and all do the same thing</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f x b y = <span class="keyword">if</span> b <span class="keyword">then</span> x+y <span class="keyword">else</span> x+<span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> f x b y = x + (<span class="keyword">if</span> b <span class="keyword">then</span> y <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> f x b y = x + (<span class="keyword">match</span> b <span class="keyword">with</span> <span class="literal">true</span> -&gt; y | <span class="literal">false</span> -&gt; <span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> f x b y = x + (<span class="keyword">let</span> g z = <span class="keyword">function</span> <span class="literal">true</span> -&gt; z | <span class="literal">false</span> -&gt; <span class="number">0</span> <span class="keyword">in</span> g y b)</span><br><span class="line"><span class="keyword">let</span> f = <span class="keyword">fun</span> x -&gt; <span class="keyword">fun</span> b -&gt; <span class="keyword">fun</span> y -&gt; <span class="keyword">if</span> b <span class="keyword">then</span> x+y <span class="keyword">else</span> x+<span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> f x b y = x + (<span class="keyword">let</span> _ = y + <span class="number">3</span> <span class="keyword">in</span> <span class="literal">()</span>; <span class="keyword">if</span> b <span class="keyword">then</span> y <span class="keyword">else</span> <span class="number">0</span>);;</span><br><span class="line"><span class="comment">(* val f : int -&gt; bool -&gt; int -&gt; int = &lt;fun&gt; *)</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">OCmal</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/11/ocamlbasics/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2019/04/11/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-12T00:44:44.578Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -489,8 +377,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
