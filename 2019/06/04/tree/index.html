@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://silemie.github.io">
-  <title>Archives: 2019/4 | Mie&#39;s</title>
+  <title>tree | Mie&#39;s</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mie&#39;s">
-<meta property="og:url" content="http://silemie.github.io/archives/2019/04/index.html">
+  <meta name="description" content="TreeVolcabularyTree: A connected, acycinc, undirected graph. Degree of node: The number of children of a node  External node: leaves Internal node: other nodes Path: a unique, non-repeating path from">
+<meta name="keywords" content="-tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tree">
+<meta property="og:url" content="http://silemie.github.io/2019/06/04/tree/index.html">
 <meta property="og:site_name" content="Mie&#39;s">
+<meta property="og:description" content="TreeVolcabularyTree: A connected, acycinc, undirected graph. Degree of node: The number of children of a node  External node: leaves Internal node: other nodes Path: a unique, non-repeating path from">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-04T01:59:45.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mie&#39;s">
+<meta name="twitter:title" content="tree">
+<meta name="twitter:description" content="TreeVolcabularyTree: A connected, acycinc, undirected graph. Degree of node: The number of children of a node  External node: leaves Internal node: other nodes Path: a unique, non-repeating path from">
   
     <link rel="alternative" href="/atom.xml" title="Mie&#39;s" type="application/atom+xml">
   
@@ -150,87 +155,213 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-tree" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/12/ocamlbasics/" class="archive-article-date">
-  	<time datetime="2019-04-12T02:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/12/ocamlbasics/">Basic OCmal</a>
+    <h1 class="article-title" itemprop="name">
+      tree
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/06/04/tree/" class="archive-article-date">
+  	<time datetime="2019-06-04T13:56:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><h3 id="Volcabulary"><a href="#Volcabulary" class="headerlink" title="Volcabulary"></a>Volcabulary</h3><p>Tree: A connected, acycinc, undirected graph.</p>
+<p>Degree of node: The number of children of a node </p>
+<p>External node: leaves</p>
+<p>Internal node: other nodes</p>
+<p>Path: a unique, non-repeating path from r to n (we can use this sequence to define descendents and ancestors)</p>
+<p>Depth(level)</p>
+<p>Maximum depth = height</p>
+<p>Path length: the sum of the levels of all nodes</p>
+<p>External path length: the sum of the levels of external nodes</p>
+<p>Internal path length: the sum of the levels of internal nodes</p>
+<h3 id="Representations"><a href="#Representations" class="headerlink" title="Representations"></a>Representations</h3><p><strong>Root - down </strong></p>
+<p>key implementation: siblings and children (degree!)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">treeSum</span><span class="params">(Tree&lt;T&gt; tree)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> sum;</span><br><span class="line">  sum = tree.label();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tree.degree(); i+= <span class="number">1</span>)</span><br><span class="line">    sum += treeSum(T.child(i));</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Leaf - up</strong></p>
+<p>key implementation: parent</p>
+<p>Array representation (binary tree):</p>
+<ul>
+<li>parent for k-th node: (k-1)/2</li>
+<li>left child for k-th node: 2k + 1</li>
+<li>right child for k-th node: 2k + 2</li>
+</ul>
+<h3 id="Tree-Traversals"><a href="#Tree-Traversals" class="headerlink" title="Tree Traversals"></a>Tree Traversals</h3><p>Traversals in an iterative way</p>
+<p>In Java, we implement tree by an array. Thus, we must visit the root firstly, then, we visit its left child and its right child.  (If one child is null, it will show null.) </p>
+<p>If the array has the length n, we know the height of the tree is logn. </p>
+<p><strong>Preorder</strong></p>
+<p>Root - Left -Right </p>
+<p>It is in the same order of the array.</p>
+<p>对于每一次visit：</p>
+<p>1.首先将其value加入到输出队列中</p>
+<p>2.检查left child，如果不为空，visit left</p>
+<p>3.检查right child，如果不为空，visit right</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(!stack.empty()) &#123;</span><br><span class="line">  TreeNode node = stack.pop();</span><br><span class="line">  preorder.add(node.val);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(node.right != <span class="keyword">null</span>) &#123;stack.add(node.right);&#125;</span><br><span class="line">  <span class="keyword">if</span>(node.left != <span class="keyword">null</span>) &#123;stack.add(node.left);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Inorder</strong></p>
+<p>Left - Root - Right </p>
+<p>对于每一次visit:</p>
+<p>1.如果有left child，将left child加入到stack中，visit left child，直到没有left child</p>
+<p>2.将value加入到array中</p>
+<p>3.如果有right child，visit right child（然后重复第一步）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(node != <span class="keyword">null</span> || !stack.empty()) &#123;</span><br><span class="line">  <span class="keyword">while</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line">    stack.add(node);</span><br><span class="line">    node = node.left;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"> 	TreeNode visitedNode = stack.pop();</span><br><span class="line">  inorder.add(visitedNode.val);</span><br><span class="line">  node = visitedNode.right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Postorder</strong></p>
+<p>Left - Right - Root </p>
+<p>对于每一次visit：</p>
+<p>1.当node不为空时，将node.right和node加入到stack中，node = node.left</p>
+<p>2.从stack中取第一个node，如果node.right != null并且node.right = stack.peek()，使node等于stack的第一个node，并且将原node放回到stack；否则，把node加入到输出队列中并使其为空</p>
+<p><strong>BFS</strong></p>
+<p>level traversal </p>
+<p><strong>Tree Construction</strong></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">OCmal</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-tree</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://silemie.github.io/2019/06/04/tree/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/12/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-12T00:44:44.578Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/01/DFS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bread-First-Search and Depth-First-Search</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/12/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -253,8 +384,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

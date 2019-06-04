@@ -152,6 +152,126 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/04/tree/">tree</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/04/tree/" class="archive-article-date">
+  	<time datetime="2019-06-04T13:56:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><h3 id="Volcabulary"><a href="#Volcabulary" class="headerlink" title="Volcabulary"></a>Volcabulary</h3><p>Tree: A connected, acycinc, undirected graph.</p>
+<p>Degree of node: The number of children of a node </p>
+<p>External node: leaves</p>
+<p>Internal node: other nodes</p>
+<p>Path: a unique, non-repeating path from r to n (we can use this sequence to define descendents and ancestors)</p>
+<p>Depth(level)</p>
+<p>Maximum depth = height</p>
+<p>Path length: the sum of the levels of all nodes</p>
+<p>External path length: the sum of the levels of external nodes</p>
+<p>Internal path length: the sum of the levels of internal nodes</p>
+<h3 id="Representations"><a href="#Representations" class="headerlink" title="Representations"></a>Representations</h3><p><strong>Root - down </strong></p>
+<p>key implementation: siblings and children (degree!)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">treeSum</span><span class="params">(Tree&lt;T&gt; tree)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> sum;</span><br><span class="line">  sum = tree.label();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tree.degree(); i+= <span class="number">1</span>)</span><br><span class="line">    sum += treeSum(T.child(i));</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Leaf - up</strong></p>
+<p>key implementation: parent</p>
+<p>Array representation (binary tree):</p>
+<ul>
+<li>parent for k-th node: (k-1)/2</li>
+<li>left child for k-th node: 2k + 1</li>
+<li>right child for k-th node: 2k + 2</li>
+</ul>
+<h3 id="Tree-Traversals"><a href="#Tree-Traversals" class="headerlink" title="Tree Traversals"></a>Tree Traversals</h3><p>Traversals in an iterative way</p>
+<p>In Java, we implement tree by an array. Thus, we must visit the root firstly, then, we visit its left child and its right child.  (If one child is null, it will show null.) </p>
+<p>If the array has the length n, we know the height of the tree is logn. </p>
+<p><strong>Preorder</strong></p>
+<p>Root - Left -Right </p>
+<p>It is in the same order of the array.</p>
+<p>对于每一次visit：</p>
+<p>1.首先将其value加入到输出队列中</p>
+<p>2.检查left child，如果不为空，visit left</p>
+<p>3.检查right child，如果不为空，visit right</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(!stack.empty()) &#123;</span><br><span class="line">  TreeNode node = stack.pop();</span><br><span class="line">  preorder.add(node.val);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(node.right != <span class="keyword">null</span>) &#123;stack.add(node.right);&#125;</span><br><span class="line">  <span class="keyword">if</span>(node.left != <span class="keyword">null</span>) &#123;stack.add(node.left);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Inorder</strong></p>
+<p>Left - Root - Right </p>
+<p>对于每一次visit:</p>
+<p>1.如果有left child，将left child加入到stack中，visit left child，直到没有left child</p>
+<p>2.将value加入到array中</p>
+<p>3.如果有right child，visit right child（然后重复第一步）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(node != <span class="keyword">null</span> || !stack.empty()) &#123;</span><br><span class="line">  <span class="keyword">while</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line">    stack.add(node);</span><br><span class="line">    node = node.left;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"> 	TreeNode visitedNode = stack.pop();</span><br><span class="line">  inorder.add(visitedNode.val);</span><br><span class="line">  node = visitedNode.right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Postorder</strong></p>
+<p>Left - Right - Root </p>
+<p>对于每一次visit：</p>
+<p>1.当node不为空时，将node.right和node加入到stack中，node = node.left</p>
+<p>2.从stack中取第一个node，如果node.right != null并且node.right = stack.peek()，使node等于stack的第一个node，并且将原node放回到stack；否则，把node加入到输出队列中并使其为空</p>
+<p><strong>BFS</strong></p>
+<p>level traversal </p>
+<p><strong>Tree Construction</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/04/tree/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-DFS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,12 +279,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/DFS/">Bread-First-Search and Depth-First-Search</a>
+      <a class="article-title" href="/2019/05/01/DFS/">Bread-First-Search and Depth-First-Search</a>
     </h1>
   
 
         
-        <a href="/2019/04/30/DFS/" class="archive-article-date">
+        <a href="/2019/05/01/DFS/" class="archive-article-date">
   	<time datetime="2019-04-30T20:49:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
 </a>
         
@@ -268,7 +388,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/30/DFS/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/01/DFS/">展开全文 >></a>
         </p>
       
 
@@ -305,12 +425,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/ocamlbasics/">Basic OCmal</a>
+      <a class="article-title" href="/2019/04/12/ocamlbasics/">Basic OCmal</a>
     </h1>
   
 
         
-        <a href="/2019/04/11/ocamlbasics/" class="archive-article-date">
+        <a href="/2019/04/12/ocamlbasics/" class="archive-article-date">
   	<time datetime="2019-04-12T02:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
 </a>
         
@@ -398,7 +518,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/11/ocamlbasics/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/04/12/ocamlbasics/">展开全文 >></a>
         </p>
       
 
@@ -435,12 +555,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/04/12/hello-world/">Hello World</a>
     </h1>
   
 
         
-        <a href="/2019/04/11/hello-world/" class="archive-article-date">
+        <a href="/2019/04/12/hello-world/" class="archive-article-date">
   	<time datetime="2019-04-12T00:44:44.578Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
 </a>
         
@@ -469,7 +589,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/11/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/04/12/hello-world/">展开全文 >></a>
         </p>
       
 
@@ -609,6 +729,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OCmal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-tree</a>
               </li>
             
             <div class="clearfix"></div>
