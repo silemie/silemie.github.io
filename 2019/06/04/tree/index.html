@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mie&#39;s">
 <meta property="og:description" content="TreeVolcabularyTree: A connected, acycinc, undirected graph. Degree of node: The number of children of a node  External node: leaves Internal node: other nodes Path: a unique, non-repeating path from">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-04T07:59:12.598Z">
+<meta property="og:updated_time" content="2019-06-05T03:06:30.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tree">
 <meta name="twitter:description" content="TreeVolcabularyTree: A connected, acycinc, undirected graph. Degree of node: The number of children of a node  External node: leaves Internal node: other nodes Path: a unique, non-repeating path from">
@@ -200,6 +200,7 @@
 <p>In Java, we implement tree by an array. Thus, we must visit the root firstly, then, we visit its left child and its right child.  (If one child is null, it will show null.) </p>
 <p>If the array has the length n, we know the height of the tree is logn. </p>
 <p><strong>Preorder</strong> (DFS)</p>
+<p>Used to create a copy of the tree</p>
 <p>Root - Left -Right </p>
 <p>It is in the same order of the array.</p>
 <p>对于每一次visit：</p>
@@ -210,6 +211,8 @@
 <p>N-ary</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(!stack.empty()) &#123;</span><br><span class="line">    Node node = stack.pop();</span><br><span class="line">    preorder.add(node.val);</span><br><span class="line">    </span><br><span class="line">    Collections.reverse(node.children);</span><br><span class="line">    <span class="keyword">for</span>(Node c : node.children) &#123;</span><br><span class="line">        stack.add(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Inorder</strong></p>
+<p>In inorder sequence, we can find out all elements on left side of ‘Root’ are in left subtree and elements onright side of ‘Root’ are in right subtree.</p>
+<p>In BST, the inorder sequence gives nodes in non-decreasing order. </p>
 <p>Left - Root - Right </p>
 <p>对于每一次visit:</p>
 <p>1.如果有left child，将left child加入到stack中，visit left child，直到没有left child</p>
@@ -217,7 +220,7 @@
 <p>3.如果有right child，visit right child（然后重复第一步）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(node != <span class="keyword">null</span> || !stack.empty()) &#123;</span><br><span class="line">  <span class="keyword">while</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line">    stack.add(node);</span><br><span class="line">    node = node.left;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"> 	TreeNode visitedNode = stack.pop();</span><br><span class="line">  inorder.add(visitedNode.val);</span><br><span class="line">  node = visitedNode.right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Postorder</strong> (reverse of preorder)</p>
-<p>Binary Tree</p>
+<p>Used to delete the tree</p>
 <p>Left - Right - Root </p>
 <p>对于每一次visit：</p>
 <p>1.当node不为空时，将node.right和node加入到stack中，node = node.left</p>
@@ -233,6 +236,7 @@
 <p><strong>Tree Construction</strong></p>
 <p><strong>Preorder + Inorder</strong></p>
 <p><strong>Inorder + Postorder</strong></p>
+<p><strong>Postorder + Preorder</strong></p>
 
       
 
@@ -469,6 +473,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -482,14 +494,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Graph</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
               </li>
              
               <li class="article-tag-list-item">
