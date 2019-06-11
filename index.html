@@ -152,6 +152,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-heap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/12/heap/">Priority Queue</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/12/heap/" class="archive-article-date">
+  	<time datetime="2019-06-12T01:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Heap（Priority-Queue）"><a href="#Heap（Priority-Queue）" class="headerlink" title="Heap（Priority Queue）"></a>Heap（Priority Queue）</h1><p>优先队列（Priority Queue）是一种非常重要的数据结构，本文将讨论对于优先队列的有效实现以及优先队列的使用。一般来说，优先队列一定具有两个基本操作：插入Insert和删除最小DeleteMin。</p>
+<h3 id="Basic-Implementation"><a href="#Basic-Implementation" class="headerlink" title="Basic Implementation"></a>Basic Implementation</h3><p>最简单的实现是<strong>简单链表</strong>（LinkedList），在链表头或者尾插入元素（O(1)），再遍历链表找到最小元素并删除（O(N)）。或者一直保持链表排序（O(N)），这样删除最小只用花费（O(1)）。</p>
+<p>另一种实现方式是<strong>查找二叉树</strong>（Binary Search Tree）。插入是随机的，花费O(logN)的时间，删除最小则一直删除最左边的元素（O(logN)），如上时间花费都是<strong>平均时间</strong>。由于最小元素一直被删除，树的结构将被影响（最坏情况下树的深度将是其期望深度的两倍）。</p>
+<h3 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h3><p>堆（Heap）能够在O(logN)的时间内将如上两个操作完成。</p>
+<p>堆具有<strong>结构性</strong>与<strong>堆序性</strong>两个性质，而对于堆的任意插入（Insert）和删除最小（DeleteMin）都可能破坏这两个性质。因此，我们所有对堆的操作都要维持这两个操作。</p>
+<p><strong>结构性</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Priority Queue</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Heap</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Data Structure</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/12/heap/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-stack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -199,15 +286,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Data Structure</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Queue</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Data Structure</a>
         		</li>
       		
 		</ul>
@@ -936,11 +1023,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
+                <a href="javascript:void(0)" class="js-tag color5">Priority Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color5">Heap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -949,6 +1036,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OCmal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
