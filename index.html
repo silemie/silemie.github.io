@@ -178,6 +178,29 @@
 <h3 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h3><p>堆（Heap）能够在O(logN)的时间内将如上两个操作完成。</p>
 <p>堆具有<strong>结构性</strong>与<strong>堆序性</strong>两个性质，而对于堆的任意插入（Insert）和删除最小（DeleteMin）都可能破坏这两个性质。因此，我们所有对堆的操作都要维持这两个操作。</p>
 <p><strong>结构性</strong></p>
+<p>堆的结构是一棵Complete Binary Tree，意味着堆是个完全填满的二叉树（底层由左往右插入元素，可以不满），其高（height）为logN。因为完全二叉树的规律，我们不需要使用链表实现堆，而可以用一个普通数组实现它。<strong>对于任意在i上的元素，左儿子是2i，右儿子是2i+1，母亲是i/2</strong></p>
+<p><strong>堆序性</strong></p>
+<p>为了快速实现DeleteMin这一操作，我们应当始终确保最小元素在根（Root）的位置上。我们应当确保<strong>任意结点都小于他的孩子</strong>。</p>
+<h3 id="Heap-Operations"><a href="#Heap-Operations" class="headerlink" title="Heap Operations"></a>Heap Operations</h3><p>如上文所说，优先队列（堆）有两个基本操作：Insert和DeleteMin，我们将在下文中探讨如何实现这两个基本操作。</p>
+<p><strong>Insert</strong></p>
+<ol>
+<li>将插入元素插入到堆的下一个位置中（末尾指针处），如果堆的堆序性没有被破坏，那么插入完成。</li>
+<li>如果堆的堆序性被破坏，我们交换该元素与其父节点。重复这一过程，一直到堆序性没有被破坏为止。</li>
+</ol>
+<p>这一过程被称作Percolate Up。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(AnyType x)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(currentSize == array.length - <span class="number">1</span>) </span><br><span class="line">  &#123;</span><br><span class="line">    enlargeArray(array.length * <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> hole = currentSize++;</span><br><span class="line">  <span class="keyword">for</span>(array[<span class="number">0</span>] = x; x.compareTo(array[hole]) &lt; <span class="number">0</span>; hole/=<span class="number">2</span>) </span><br><span class="line">  &#123;</span><br><span class="line">    array[hole] = array[hole/<span class="number">2</span>]; <span class="comment">//将swap需要3步的操作化简为1步</span></span><br><span class="line">  &#125;</span><br><span class="line">  array[hole] = x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最坏情况：插入元素是最小值(O(logN))</p>
+<p><strong>DeleteMin</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> AnyType <span class="title">deleteMin</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(isEmpty()) </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnderflowException();</span><br><span class="line">  </span><br><span class="line">  AnyType min = findMin();</span><br><span class="line">  array[<span class="number">1</span>] = array[currentSize--];</span><br><span class="line">  percolateDown(<span class="number">1</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">percolateDown</span><span class="params">(<span class="keyword">int</span> hole)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> child;</span><br><span class="line">  AnyType tmp = array[hole];</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(; hole * <span class="number">2</span> &lt;= currentSize; hole = child) &#123;</span><br><span class="line">    child = hole * <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(child != currentSize &amp;&amp; array[child + <span class="number">1</span>].compareTo(array[child]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      child++;</span><br><span class="line">    &#125; <span class="comment">//ensure we use smaller child for later comparison</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(array[child].compareTo(tmp) &lt; <span class="number">0</span>) </span><br><span class="line">    &#123;</span><br><span class="line">      array[hole] = array[child];<span class="comment">//swap a[hole] and a[child]</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  array[hole] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最坏情况：O(logN)从根下滤到最底层</p>
+<p><strong>decreaseKey</strong></p>
+<p>decreaseKey(p, key)降低p处的值，降低的幅度为key。降低后做一次上滤。</p>
+<p><strong>increaseKey</strong></p>
+<p>increaseKey(p, key)增加p处的值，增加的幅度为key。增加后做下滤。</p>
+<p><strong>delete</strong></p>
+<p>删除某一结点p：执行decreaseKey(p, MAX_INTEGER)，再执行deleteMin。</p>
+<p><strong>buildHeap</strong></p>
+<p>执行N次Inert即可。每次Insert平均时间是O(1)，最坏时间是O(logN)，所以该操作平均时间是O(N)</p>
 
       
 
@@ -1003,6 +1026,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Priority Queue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Heap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">general</a>
               </li>
              
@@ -1023,27 +1058,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Priority Queue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Heap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Data Structure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">OCmal</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">OCmal</a>
               </li>
              
               <li class="article-tag-list-item">
