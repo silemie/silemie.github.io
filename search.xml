@@ -18,6 +18,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Personal </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -39,11 +45,11 @@
       
         <tags>
             
+            <tag> Data Structure </tag>
+            
             <tag> Priority Queue </tag>
             
             <tag> Heap </tag>
-            
-            <tag> Data Structure </tag>
             
         </tags>
       
@@ -68,11 +74,11 @@
       
         <tags>
             
-            <tag> Data Structure </tag>
-            
             <tag> Stack </tag>
             
             <tag> Queue </tag>
+            
+            <tag> Data Structure </tag>
             
         </tags>
       
@@ -94,12 +100,6 @@
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> General </tag>
-            
-        </tags>
       
     </entry>
     
