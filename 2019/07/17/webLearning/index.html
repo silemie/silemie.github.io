@@ -4,8 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Domain Name System(Authorized Reproduction), Mie&#39;s World">
-    <meta name="description" content="对于 DNS(Domain Name System) 大家肯定不陌生，不就是用来将一个网站的域名转换为对应的IP吗。当我们发现可以上QQ但不能浏览网页时，我们会想到可能是域名服务器挂掉了；当我们用别人提供的hosts文件浏览到一个“不存在”">
+    <meta name="keywords" content="Web学习笔记, Mie&#39;s World">
+    <meta name="description" content="尚在施工中，只完成了web server部分 : )
+Web ServerWeb Server 基本原理当我们在浏览器浏览网页的时候，浏览器会先请求DNS Server，获得请求站点的IP Address，然后发送一个HTTP Reques">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Domain Name System(Authorized Reproduction) | Mie&#39;s World</title>
+    <title>Web学习笔记 | Mie&#39;s World</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/web.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/socket.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Domain Name System(Authorized Reproduction)
+                        Web学习笔记
                     </div>
                 </div>
             </div>
@@ -408,14 +409,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        4.1k
+                        921
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        14 Min
+                        3 Min
                     </div>
                     
                 
@@ -431,123 +432,80 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>对于 <a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" rel="noopener">DNS(Domain Name System)</a> 大家肯定不陌生，不就是用来将一个网站的域名转换为对应的IP吗。当我们发现可以上QQ但不能浏览网页时，我们会想到可能是域名服务器挂掉了；当我们用别人提供的hosts文件浏览到一个“<code>不存在</code>”的网页时，我们会了解到域名解析系统的脆弱。</p>
-<p>然而关于DNS还有一大堆故事值得我们去倾听，去思考。</p>
-<h2 id="DNS-源起"><a href="#DNS-源起" class="headerlink" title="DNS 源起"></a>DNS 源起</h2><p>要想访问网络上的一台计算机，我们必须要知道它的IP地址，但是这些地址（比如243.185.187.39）只是一串数字，没有规律，因此我们很难记住。并且如果一台计算机变更IP后，它必须通知所有的人。</p>
-<p>显然，直接使用IP地址是一个愚蠢的方案。于是人们想出了一个替代的方法，即为每一台计算机起一个名字，然后建立计算机名字到地址的一个映射关系。我们访问计算机的名字，剩下的名字到地址的转换过程则由计算机自动完成。</p>
-<h3 id="hosts映射"><a href="#hosts映射" class="headerlink" title="hosts映射"></a>hosts映射</h3><p>早期，名字到地址的转换过程十分简单。每台计算机保存一个<code>hosts</code>文件，里面列出所有计算机名字和对应的IP地址，然后定期从一个维护此文件的站点更新里面的记录。当我们访问某个计算机名字时，先在hosts文件找到对应的IP，然后就可以建立连接。</p>
-<p><img src="/images/hosts.png" alt="hosts管理主机"></p>
-<p>早期的<a href="https://en.wikipedia.org/wiki/ARPANET" target="_blank" rel="noopener">ARPANET</a>就是这样做的，但是随着网络规模的扩大，这种方法渐渐吃不消了。主要有以下三个原因：</p>
+                <p>尚在施工中，只完成了web server部分 : )</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><h3 id="Web-Server-基本原理"><a href="#Web-Server-基本原理" class="headerlink" title="Web Server 基本原理"></a>Web Server 基本原理</h3><p>当我们在浏览器浏览网页的时候，浏览器会先请求DNS Server，获得请求站点的IP Address，然后发送一个HTTP Request给该IP Address对应的主机，接着就会收到该地址回传的HTTP Response，而浏览器经过渲染后，将网页以一定形式呈现给我们。在此过程之中等待请求作出响应的主机，就是我们所说的Web Server。</p>
+<p>更详细地看，Web Server是一台物理服务器上的一台网络服务器（也可以理解为一个程序），它二十四小时永久等待Client（浏览器或者任何使用HTTP协议的软件）发送请求，并在接受请求之后，生成相应的响应回传给Client。Web Server 和 Client之间使用的协议是HTTP，因此我们也将其称为HTTP Server。</p>
+<p>Web Server能向Client提供文档，也可以放置网站文件、数据文件，供客户端浏览与下载。目前在UNIX和LINUX平台下最主流的Web Server是Apache和Nginx。</p>
+<p><img src alt="Web Server"></p>
+<p>Web Server的工作原理可以分为四个步骤：<strong>建立连接、请求过程、应答过程以及关闭连接</strong>。</p>
 <ol>
-<li>hosts文件变得非常大；</li>
-<li>主机名字会冲突；</li>
-<li>集中的维护站点会不堪重负（需要给几百万机器提供hosts文件，想想就可怕）。</li>
+<li>建立连接：Client通过TCP/IP协议建立到Server的TCP连接</li>
+<li>请求过程：Client向Server发送HTTP协议请求包，请求服务器里的资源文档</li>
+<li>应答过程：Server向Client发送HTTP协议的应答包，如果请求的资源包含有动态语言的内容，那么服务器会调用动态语言的解释引擎负责处理动态内容，并将处理后的数据返回给客户端。客户端将揭示其HTML文档。</li>
+<li>关闭连接：Client同Server断开连接。</li>
 </ol>
-<h3 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h3><p>为了解决上面的问题，1983年<a href="https://en.wikipedia.org/wiki/Paul_Mockapetris" target="_blank" rel="noopener">Paul Mockapetris</a>提出了域名系统（DNS, Domain Name System)，这是一种<strong>层次的、基于域</strong>的命名方案，并且用一个分布式数据库系统加以实现。当我们需要访问一个域名（其实就是前面说的计算机的名字）时，应用程序会向DNS服务器发起一个DNS请求，DNS服务器返回该域名对应的IP地址。通过下面三种手段解决了上面的问题：</p>
-<ol>
-<li>用户计算机上并没有存储所有的名字到IP的映射，这样避免了hosts文件过于庞大（现在各操作系统中hosts文件默认都是空的）。</li>
-<li>规定了域名的命名规则，保证主机名字不会重复。</li>
-<li>DNS服务器不再是单一的一台机器，而是一个层次的、合理组织的服务器集群。</li>
-</ol>
-<p>这样访问一个域名的过程可以简化为下图：</p>
-<p><img src="/images/dns_concept.png" alt="域名hosts解析过程"></p>
-<h2 id="DNS-协议"><a href="#DNS-协议" class="headerlink" title="DNS 协议"></a>DNS 协议</h2><p>那么如何具体实现这个所谓的域名系统呢，要知道管理一个超大型并且不断变化的域名到IP的映射集合可不是一个简单的事，况且还要去应付成千上万的DNS查询请求。人们最终想出了一套不错的协议，规定如何来实现这个系统，下面我们一起来看看吧。</p>
-<h3 id="域名空间"><a href="#域名空间" class="headerlink" title="域名空间"></a>域名空间</h3><p>首先我们需要制定一套命名规则，防止域名出现重复。DNS关于域名的规则和我们生活中的快递系统类似，使用层次的地址结构。快递系统中要给某人邮寄物品，地址可能是这样：中国、广东省、广州市、番禺区、中山西路12号 XXX。而一个域名看起来则是这样的groups.google.com（为什么不是com.google.groups？我猜可能和老外写地址的习惯有关）。</p>
-<p>对于Internet来说，域名层次结构的顶级（相当于国际快递地址中的国家部分）由<a href="https://www.icann.org/" target="_blank" rel="noopener">ICANN</a>（互联网名称与数字地址分配机构）负责管理。目前，已经有超过250个顶级域名，每个顶级域名可以进一步划为一些子域（二级域名），这些子域可被再次划分（三级域名），依此类推。所有这些域名可以组织成一棵树，如下图所示（图片来自Computer Networks: 7-1 ）</p>
-<p><img src="/images/domain_tree.png" alt="域名空间树"></p>
-<h3 id="域名资源记录"><a href="#域名资源记录" class="headerlink" title="域名资源记录"></a>域名资源记录</h3><p>DNS设计之初是用来建立域名到IP地址的映射，理论上对于每一个域名我们只需要在域名服务器上保存一条记录即可。这里的记录一般叫作域名资源记录，它是一个五元组，可以用以下格式表示：</p>
-<pre><code>Domain_name Time_to_live Class Type Value
-</code></pre><p>其中：</p>
-<ol>
-<li>Domain_name: 指出这条记录适用于哪个域名；</li>
-<li><code>Time_to_live</code>: 用来表明记录的生存周期，也就是说最多可以缓存该记录多长时间（后面会讲到缓存机制）；</li>
-<li>Class: 一般总是IN；</li>
-<li>Type: 记录的类型；</li>
-<li>Value: 记录的值，如果是A记录，则value是一个IPv4地址。</li>
-</ol>
-<p>我们看到域名资源记录有一个Type字段，用来表明记录的类型。这是为什么呢？因为对于一个域名来说，通常并非只记录其IP地址，还可能需要一些其他种类的记录，一些常见的记录类型如下：</p>
-<table>
-<thead>
-<tr>
-<th>记录类型</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td>主机的IPv4地址</td>
-</tr>
-<tr>
-<td>AAAA</td>
-<td>主机的IPv6地址</td>
-</tr>
-<tr>
-<td>NS</td>
-<td>该域名所在域的权威域名服务器</td>
-</tr>
-<tr>
-<td>MX</td>
-<td>接受特定域名电子邮件的服务器域名</td>
-</tr>
-<tr>
-<td>CNAME</td>
-<td>当前域名的一个别名</td>
-</tr>
-</tbody>
-</table>
-<p>关于这些域名资源记录的实例我们将在下一篇文章（实践篇）看到。</p>
-<h3 id="域名服务器"><a href="#域名服务器" class="headerlink" title="域名服务器"></a>域名服务器</h3><p>我们知道不能只用一台域名服务器来响应所有的DNS查询，因为没有一台机器能够给全球的用户提供查询服务，计算能力、存储、带宽都不允许。只能合理组织一个域名服务器集群，使他们协同工作，共同提供域名解析服务。接下来首先要面对的一个问题是<strong>如何合理地将所有的域名资源记录存储到不同的域名服务器上。</strong></p>
-<p>前面说过域名的名字空间可以组织为一棵树，这里我们可以进一步将其划分为不重叠的区域（<a href="https://en.wikipedia.org/wiki/DNS_zone" target="_blank" rel="noopener">DNS zone</a>），针对上图的域名空间，一种可能的域名划分如下图：</p>
-<p><img src="/images/domain_zone.png" alt="域名划分"></p>
-<p>然后将每个区域与多个域名服务器（其中一个是master，其他slave服务器则用来提供数据备份、加快解析速度、保证服务可用性）关联起来，称这些域名服务器为该区域的<code>权威域名服务器(Authoritative Name Servers )</code>，它保存两类域名资源记录：</p>
-<ol>
-<li>该区域内所有域名的域名资源记录。</li>
-<li>父区域和子区域的域名服务器对应的域名资源记录（主要是NS记录）。</li>
-</ol>
-<p>这样，所有的域名资源记录都保存在多个域名服务器中，并且所有的域名服务器也组成了一个层次的索引结构，便于我们后面进行域名解析。下面以一个简化的域名空间为例子，说明域名资源记录是如何保存在域名服务器中的，如下图a：</p>
-<p><img src="/images/name_servers.png" alt="域名服务器"></p>
-<p>图中域名空间划分为A, B, C, D, E, F, G七个DNS区域，每个DNS区域都有多个权威域名服务器，这些域名服务器里面保存了许多域名解析记录。对于上图的NDS区域E来说，它的权威域名服务器里面保存的记录如图中表格所示。</p>
-<p>仔细观察上图你可能会发现区域A、B并没有父区域，他们之间并没有一条路径连在一起。这将导致一个很麻烦的问题，那就是区域A的权威域名服务器可能根本不知道区域B的存在。认识到这一点后，你可能会想出一个很自然的解决方案，就是在A中记录B域名服务器的地址，同时在B中记录A的，这样它们两个就联系起来了。但是考虑到我们有超过250个顶级域名，这样做并不是很恰当。</p>
-<p>而我们使用的域名系统则采用了一种更加聪明的方法，那就是引入<a href="https://en.wikipedia.org/wiki/Root_name_server" target="_blank" rel="noopener">根域名服务器</a>，它保存了所有顶级区域的权威域名服务器记录。现在通过根域名服务器，我们可以找到所有的顶级区域的权威域名服务器，然后就可以往下一级一级找下去了。下图为全球根域名服务器的分布图，可以在<a href="http://www.root-servers.org/" target="_blank" rel="noopener">这里</a>找到。</p>
-<p>现在为止，我们的权威域名服务器和根域名服务器其实组成了一个树，树根为根域名服务器，下面每个节点都是一个区域的权威域名服务器，对于图a中各个DNS区域的权威域名服务器，它们组成了下面这棵树（<strong>实际中，一个权威域名服务器可能保存有多个DNS区域的记录，因此权威域名服务器之间的联系并不构成一棵树。这部分的详细内容可以参考RFC 1034: 4. NAME SERVERS。下面为了容易理解，将其简化为一棵树</strong>)：</p>
-<p><img src="/images/servers_tree.png" alt="域名服务树"></p>
-<h3 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h3><p>我们已经有了一个域名服务器集群，该集群合理地保存了域名空间和域名资源记录的对应关系。现在我们要做的就是发送一个DNS请求给域名服务器，然后坐等它返回正确的域名资源记录，这个过程叫作域名解析。</p>
-<p>严格来说，域名解析的过程最早要追溯到建立网络连接。因为每当连接上网络之后，计算机会自动获得一个默认的DNS服务器，当然你也可以用自己信任的DNS服务器，比如8.8.8.8（DNS服务器也有信任不信任之分，是的，实践篇会讲到），我们把这个域名服务器也叫作<code>本地域名服务器</code>。接下来当我们需要知道一个域名对应的资源记录时，会向本地域名服务器发起请求，如果该域名恰好在本地域名服务器所辖属的域名区域（DNS zone）内，那么可以直接返回记录。</p>
-<p>如果在本地域名服务器没有发现该域名的资源记录，就需要在整个域名空间搜索该域名。而整个域名空间的资源记录存储在一个分层的、树状联系的一系列域名服务器上，所以本地域名服务器首先要从根域名服务器开始往下搜索。这里有一个问题就是<strong>本地域名服务器如何找到根域名服务器在哪里呢？</strong>其实域名服务器启动的时候，就会加载一个配置文件，里面保存了根域名服务器的NS记录（要知道根域名服务器地址一般非常稳定，不会轻易改变，并且数量很少，所以这个配置文件会很小）。找到根域名服务器之后，就可以一级一级地往下查找啦。</p>
-<p>仍然以我们的图a为例，现在假设区域E内的某个用户想访问math.sysu.edu.cn，那么请求的过程如下：</p>
-<p><img src="/images/name_resolution.png" alt="域名解析过程"></p>
-<p>用语言简单描述如下：</p>
-<ol>
-<li>用户：喂，本地域名服务器，告诉我math.sysu.edu.cn的地址；</li>
-<li>本地域名服务器：哎呀，我不知道啊，不在我的辖区，容我去问问老大哥吧。root老大，能告诉我math.sysu.edu.cn的地址吗；</li>
-<li>根域名服务器：忙着呢，你去问B（.cn）；</li>
-<li>本地域名服务器：喂，B，告诉我math.sysu.edu.cn的地址；</li>
-<li>B：你去问D（.edu.cn）；</li>
-<li>本地域名服务器：喂，D，告诉我math.sysu.edu.cn的地址；</li>
-<li>D：你去问F（sysu.edu.cn）；</li>
-<li>本地域名服务器：喂，F，告诉我math.sysu.edu.cn的地址；</li>
-<li>F：容老衲看看，哎呀，找到了，是X.X.X.X；</li>
-<li>本地域名服务器：踏破铁鞋终于找到啦，喂用户，出来啊，我找到了，是X.X.X.X</li>
-</ol>
-<p>仔细想想，这和我们邮寄快递实在是如出一辙啊，假设你从美国邮东西到广州市番禺区，首先快递送到中国（不过这里没有一个类似根域名服务器的中转站而已），然后往下到广东省，接下来是广州市，再往下是番禺了。</p>
-<p>上面的是本地域名服务器的迭代解析过程，其实也可以递归查询，这里就不说了，道理差不多。</p>
-<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><p>现在整个域名系统已经可以为我们提供域名解析服务了，当我们输入域名，计算机发送DNS请求，然后DNS服务器返回给我们解析的结果，一切看起来很完美。然而是不是可以更完美呢？</p>
-<p>回顾一下平时浏览网站的情况，我们会发现两个比较有意思的结论：</p>
-<ol>
-<li>80%的时间我们都在看那些20%的网站，这就是大名鼎鼎的<a href="https://en.wikipedia.org/wiki/Pareto_principle" target="_blank" rel="noopener">80/20 Rule</a>；</li>
-<li>我们会在一个网站的不同网页之间跳转，也就是不断地访问同一个域名，类似程序访问的局部性原理。</li>
-</ol>
-<p>这两条结论很容易让我们联想到<code>缓存机制</code>。如果我们将已经访问过的那些域名的解析结果缓存在自己的计算机上，那么下次访问的时候可以直接读取结果，不用再次重复DNS查询过程，给自己和域名服务器都节省了麻烦。</p>
-<p>当然，这样做的一个前提是要缓存的解析结果不会频繁更改，也就是说我十分钟后解析一个域名的结果和现在解析的结果是一样的。对大多数域名来说，这都是一个不争的事实。但是难免有一些“善变”的域名，他们可能会频繁更改自己的解析结果。为了使缓存机制适应这两类情况，我们在域名资源记录里面添加一个<code>Time_to_live</code>字段，表明这条记录最多可以缓存多久。对于那些“稳如泰山”的域名，给一个比较大的值，而那些“朝三暮四”的域名，则可以给定一个小的值。</p>
-<p>我们既然可以在本机利用缓存，那么可不可以在域名服务器上也利用缓存机制呢，答案当然是可以的。因为对于域名服务器来说，上面的两条有意思的结论仍然有效。所以，域名服务器可以将那些访问过的域名资源记录缓存，用户再次发起请求时，可以直接返回缓存结果，不用去迭代或者递归解析。</p>
-<p>关于DNS理论部分，更多内容还可以参考这两个文本：</p>
+<p>虽然Web Server的主要工作是request和response，但实际中的web server会有更多的服务，比如：</p>
 <ul>
-<li><a href="https://tools.ietf.org/html/rfc1034" target="_blank" rel="noopener">RFC 1034: Domain Names - Concepts and Facilities</a></li>
+<li>缓存机制：将常访问页面缓存起来，提高响应速度</li>
+<li>安全：防止黑客的各种攻击</li>
+<li>并发处理：如何响应不同客户端同时发起的请求</li>
+<li>日志：记录访问日志，方便做分析</li>
 </ul>
-<h2 id="并没有结束"><a href="#并没有结束" class="headerlink" title="并没有结束"></a>并没有结束</h2><p>上面一大堆理论，看上去有点不明所以是吧，没事，接下来会结合实践来更加清晰地认识DNS这一最基础的系统。</p>
-<p>其实不止是DNS，还有HTTPS、TCP、UDP这些很基础的协议，都值得我们静下心去好好认识它们。因为，写DNS之前，我以为我已经完全搞明白了它，但是写的过程发现好多地方自己根本就不知道，之前完全是停留在一个很浮夸的层面上。所以，是时候找时间好好把这些协议过一遍，用自己的语言，从<code>解决问题</code>的角度，记录下这些经典协议的故事了。</p>
-<p>全文转载自<strong>selfboot</strong>的<a href="https://selfboot.cn/2015/11/05/dns_theory/" target="_blank" rel="noopener">blog</a></p>
+<h3 id="Web-Server-简单实现"><a href="#Web-Server-简单实现" class="headerlink" title="Web Server 简单实现"></a>Web Server 简单实现</h3><p>我们可以一起来搭建一个简单的Web Server。</p>
+<pre class=" language-c"><code class="language-c">unsighed <span class="token keyword">short</span> serverPort <span class="token operator">=</span> <span class="token number">8888</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> serverSocket<span class="token punctuation">;</span>
+<span class="token keyword">int</span> clientSocket<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> sockaddr_in serverAddress<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> sockaddr_in clientAddress<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>serverSocket <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>PF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> IPROTO_TCP<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"socket failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// construct local address </span>
+<span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serverAddress<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serverAddress<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+serverAddress<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+serverAddress<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">htonl</span><span class="token punctuation">(</span>INADDR_ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+serverAddress<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">bind</span><span class="token punctuation">(</span>serverSocket<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>serverAddress<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serverAddress<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"bind failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">listen</span><span class="token punctuation">(</span>serverSocket<span class="token punctuation">,</span> MAXPENDING<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"listen failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> clientLength <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>clientAddress<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> buffer<span class="token punctuation">[</span><span class="token number">4096</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>clientSocket <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>serverSocket<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>clientAddress<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clientLength<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"accept failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">recv</span><span class="token punctuation">(</span>clientSocket<span class="token punctuation">,</span> buffer<span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"recv failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//analyze receive request</span>
+<span class="token comment" spellcheck="true">//create response</span>
+
+<span class="token keyword">char</span> response<span class="token punctuation">[</span>some length<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"HTTP/1.1 200 OK\n"</span><span class="token punctuation">,</span> <span class="token string">"Hello, World!"</span><span class="token punctuation">}</span>
+size_t n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">send</span><span class="token punctuation">(</span>clientSocket<span class="token punctuation">,</span> response<span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">!=</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"chunk send fail"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">close</span><span class="token punctuation">(</span>clientSocket<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在terminal运行server后，我们可以通过<a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888/</a> 来访问页面（会显示一行“hello world”）。</p>
+<h3 id="Socket-amp-HTTP"><a href="#Socket-amp-HTTP" class="headerlink" title="Socket &amp; HTTP"></a>Socket &amp; HTTP</h3><p>让我们再多来谈谈URL，下图是它的基本结构，它告诉了客户端需要连接的web server和以及到达后需要访问的服务的页面（路径）。</p>
+<p><img src alt="url基本结构"></p>
+<p>在客户端发送HTTP请求之前，它会与服务器建立一条TCP连接，然后通过该TCP连接发送一个HTTP Request并且收到HTTP Response。而建立TCP连接会使用Sockets，下图用了telnet指令来手动模拟该过程。</p>
+<p><img src alt="Socket"></p>
+<p>建立TCP Connection后，客户端将发送HTTP Request，下图是请求的基本结构。</p>
+<p><img src alt="HTTP request"></p>
+<p>HTTP请求包含一个Action（GET），Path（/hello）以及HTTP Version（HTTP/1.1）。</p>
+<p>而服务器返回的HTTP Response的基本结构如下：</p>
+<p><img src alt="HTTP response"></p>
+<p>HTTP响应将包含一行Header，其包括了Version 与 Status Code，接下来空一行，然后是HTTP Response Body。</p>
 
             </div>
             <hr/>
@@ -706,9 +664,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Domain Name System(Authorized Reproduction)》
+                    《Web学习笔记》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/17/dns/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/17/webLearning/" property="cc:attributionName"
                rel="cc:attributionURL">
                 Mie
             </a> is licensed under a
@@ -748,9 +706,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2019/07/17/webLearning/">
                     <div class="card-image">
@@ -768,9 +727,9 @@ Web ServerWeb Server 基本原理当我们在浏览器浏览网页的时候，�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -783,6 +742,7 @@ Web ServerWeb Server 基本原理当我们在浏览器浏览网页的时候，�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -801,23 +761,18 @@ Web ServerWeb Server 基本原理当我们在浏览器浏览网页的时候，�
                 Next&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/16/loopinvariant/">
+                <a href="/2019/07/17/dns/">
                     <div class="card-image">
                         
+                        <img src="/images/web.png" class="responsive-img" alt="Domain Name System(Authorized Reproduction)">
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="循环不变式(Loop Invariant)与算法正确性">
-                        
-                        <span class="card-title">循环不变式(Loop Invariant)与算法正确性</span>
+                        <span class="card-title">Domain Name System(Authorized Reproduction)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            循环不变式是让循环成立的一个statement，其必须具备三个性质：
-
-初始(Initialization)：在循环开始（第一次迭代）之前，它为真
-保持(Maintenance)：如果循环的某次迭代之前它为真，那么下次迭代之前它仍为真。
-终
+                            对于 DNS(Domain Name System) 大家肯定不陌生，不就是用来将一个网站的域名转换为对应的IP吗。当我们发现可以上QQ但不能浏览网页时，我们会想到可能是域名服务器挂掉了；当我们用别人提供的hosts文件浏览到一个“不存在”
                         
                     </div>
                     <div class="publish-info">
@@ -839,8 +794,8 @@ Web ServerWeb Server 基本原理当我们在浏览器浏览网页的时候，�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/" target="_blank">
-                        <span class="chip bg-color">Algorithm</span>
+                    <a href="/tags/Networks/" target="_blank">
+                        <span class="chip bg-color">Networks</span>
                     </a>
                     
                 </div>
