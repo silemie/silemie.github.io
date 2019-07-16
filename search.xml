@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>循环不变式(Loop Invariant)与算法正确性</title>
+      <link href="/2019/07/16/loopinvariant/"/>
+      <url>/2019/07/16/loopinvariant/</url>
+      
+        <content type="html"><![CDATA[<p>循环不变式是让循环成立的一个statement，其必须具备三个性质：</p><ol><li>初始(Initialization)：在循环开始（第一次迭代）之前，它为真</li><li>保持(Maintenance)：如果循环的某次迭代之前它为真，那么下次迭代之前它仍为真。</li><li>终止(Termination)：当循环终止时（在某种条件下），不变式为我们提供一个有用的性质，该性质有助于证明算法是正确的。</li></ol><h3 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h3><p>对于插入排序来说，“A[1, …, j - 1]是有序的”这一statement是它的循环不定式。</p><p>初始：在进行第一次循环之前(j = 2)，因为仅有单个元素A[1]，因此A[1,…, j - 1]一定是有序的。</p><p>保持：因为循环将循环中的每一元素向右移动，直到此次插入的A[j]到恰当的元素。因此我们可以保证，从A[1,…, j - 1]一定是有序的。</p><p>终止：for循环终止的条件是j超出A的长度。因为每次j都是增加1，因此必会发生j&gt;A.length。那么整个数组A[1, …, j]一定是有序的</p><pre class=" language-pseudocode"><code class="language-pseudocode">Insertion-Sort(A)  for j = 2 to A.length      key = A[j]      i = j - 1      while i > 0 and A[i] > key          A[i + 1] = A[i]          i = i - 1      A[i + 1] = key</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> CodingBetter </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>周六野 + 林芊妤 健身计划</title>
       <link href="/2019/06/20/wildSaturday/"/>
       <url>/2019/06/20/wildSaturday/</url>
@@ -87,11 +112,11 @@
     
     
     <entry>
-      <title>CodingStyle(Updated Google Coding Style)</title>
+      <title>CodingStyle(Updated Java Google Coding Style)</title>
       <link href="/2019/06/06/CodingStyle/"/>
       <url>/2019/06/06/CodingStyle/</url>
       
-        <content type="html"><![CDATA[<h1 id="Principles-of-Good-Programming"><a href="#Principles-of-Good-Programming" class="headerlink" title="Principles of Good Programming"></a>Principles of Good Programming</h1><ul><li>DRY(Don’t Repeat Yourself): avoid repetition </li><li>Abstraction: Each significant piece of functionality in a program should be implemented in just one place in the source code</li><li>Keep it simple, stupid! Simplicity should always be a key goal</li><li>Avoid creating a YAGNI(<strong>You aren’t going to need it</strong>):  try not to add functionality until you need it</li><li>Easy read and understood</li><li><strong>open/closed</strong> open for extension but closed for modification</li><li>Write code for the maintainer</li><li>Single Responsibility Principle: A component of code (e.g. class or function) should perform a single well defined task</li><li>Minimize coupling &amp; Maximize cohesion </li><li>Hide implementation details</li><li>Law of Demeter: code components should only communicate with their direct relations (e.g. classes that they inherit from, objects that they contain, objects passed by argument, etc.)</li><li>Avoid premature optimization: optimize the code after finishing them</li><li>Separation of concerns</li></ul><p>Source：<a href="https://www.kevinlondon.com/2015/05/05/code-review-best-practices.html" target="_blank" rel="noopener">https://www.kevinlondon.com/2015/05/05/code-review-best-practices.html</a></p><h1 id="Java-Coding-Style"><a href="#Java-Coding-Style" class="headerlink" title="Java Coding Style"></a>Java Coding Style</h1><p>Based on Google Java Coding Style, I took some nodes about these <strong>hard and fast rules</strong>. </p><h4 id="Class-Declaration"><a href="#Class-Declaration" class="headerlink" title="Class Declaration"></a>Class Declaration</h4><ul><li>Exactly one top-level class declaration</li><li>Ordering of class contents: When a class has multiple constructors, or multiple methods with the same name, these appear sequentially, with no other code in between</li></ul><h4 id="Formatting"><a href="#Formatting" class="headerlink" title="Formatting"></a>Formatting</h4><ul><li><p>Braces are used with <code>if</code>, <code>else</code>, <code>for</code>, <code>do</code> and <code>while</code> statements, even when the body is empty or contains only a single statement</p></li><li><p>No line break before the opening brace; line break after the opening brace; line break before the closing brace; line break after the closing brace</p></li><li><p>Empty blocks may be concise</p></li><li><p>One statement per line</p></li><li><p>Column limit: 100 characters (any unicode code point) - exceeded code should be line-wrapped</p></li><li><p>Every variable declaration declares only one variable </p></li><li><p>Dont’ forget initializing local variables!!!!</p></li><li><p>Class names are written in UpperCamelCase</p></li><li><p>Method names are written in lowerCamelCase</p></li><li><p>Constant names use all uppercase letters</p></li><li><p>Non-constant field names are written in lowerCamelCase</p></li><li><p>Parameter names are written in lowerCamelCase</p></li><li><p>Local variable names are written in lowerCamelCase</p></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="Java-Coding-Style"><a href="#Java-Coding-Style" class="headerlink" title="Java Coding Style"></a>Java Coding Style</h1><p>Based on Google Java Coding Style, I took some notes about these <strong>hard and fast rules</strong>. </p><h4 id="Class-Declaration"><a href="#Class-Declaration" class="headerlink" title="Class Declaration"></a>Class Declaration</h4><ul><li>Exactly one top-level class declaration</li><li>Ordering of class contents: When a class has multiple constructors, or multiple methods with the same name, these appear sequentially, with no other code in between</li></ul><h4 id="Formatting"><a href="#Formatting" class="headerlink" title="Formatting"></a>Formatting</h4><ul><li>Braces are used with <code>if</code>, <code>else</code>, <code>for</code>, <code>do</code> and <code>while</code> statements, even when the body is empty or contains only a single statement</li><li>No line break before the opening brace; line break after the opening brace; line break before the closing brace; line break after the closing brace</li><li>Empty blocks may be concise</li><li>One statement per line</li><li>Column limit: 100 characters (any unicode code point) - exceeded code should be line-wrapped</li><li>Every variable declaration declares only one variable </li><li>Dont’ forget initializing local variables!!!!</li><li>Class names are written in UpperCamelCase</li><li>Method names are written in lowerCamelCase</li><li>Constant names use all uppercase letters</li><li>Non-constant field names are written in lowerCamelCase</li><li>Parameter names are written in lowerCamelCase</li><li>Local variable names are written in lowerCamelCase</li></ul><h1 id="Principles-of-Good-Programming"><a href="#Principles-of-Good-Programming" class="headerlink" title="Principles of Good Programming"></a>Principles of Good Programming</h1><ul><li>DRY(Don’t Repeat Yourself): avoid repetition </li><li>Abstraction: Each significant piece of functionality in a program should be implemented in just one place in the source code</li><li>Keep it simple, stupid! Simplicity should always be a key goal</li><li>Avoid creating a YAGNI(<strong>You aren’t going to need it</strong>):  try not to add functionality until you need it</li><li>Easy read and understood</li><li><strong>open/closed</strong> open for extension but closed for modification</li><li>Write code for the maintainer</li><li>Single Responsibility Principle: A component of code (e.g. class or function) should perform a single well defined task</li><li>Minimize coupling &amp; Maximize cohesion </li><li>Hide implementation details</li><li>Law of Demeter: code components should only communicate with their direct relations (e.g. classes that they inherit from, objects that they contain, objects passed by argument, etc.)</li><li>Avoid premature optimization: optimize the code after finishing them</li><li>Separation of concerns</li></ul><p>Source：<a href="https://www.kevinlondon.com/2015/05/05/code-review-best-practices.html" target="_blank" rel="noopener">https://www.kevinlondon.com/2015/05/05/code-review-best-practices.html</a></p>]]></content>
       
       
       <categories>

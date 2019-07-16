@@ -4,10 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Tree, Mie&#39;s World">
-    <meta name="description" content="TreeVolcabularyTree: A connected, acycinc, undirected graph.
-Degree of node: The number of children of a node 
-External ">
+    <meta name="keywords" content="循环不变式(Loop Invariant)与算法正确性, Mie&#39;s World">
+    <meta name="description" content="循环不变式是让循环成立的一个statement，其必须具备三个性质：
+
+初始(Initialization)：在循环开始（第一次迭代）之前，它为真
+保持(Maintenance)：如果循环的某次迭代之前它为真，那么下次迭代之前它仍为真。
+终">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +17,7 @@ External ">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Tree | Mie&#39;s World</title>
+    <title>循环不变式(Loop Invariant)与算法正确性 | Mie&#39;s World</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -262,13 +264,13 @@ External ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/ds.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Tree
+                        循环不变式(Loop Invariant)与算法正确性
                     </div>
                 </div>
             </div>
@@ -379,12 +381,8 @@ External ">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Data-Structure/" target="_blank">
-                                <span class="chip bg-color">Data Structure</span>
-                            </a>
-                        
-                            <a href="/tags/Tree/" target="_blank">
-                                <span class="chip bg-color">Tree</span>
+                            <a href="/tags/Algorithm/" target="_blank">
+                                <span class="chip bg-color">Algorithm</span>
                             </a>
                         
                     </div>
@@ -407,21 +405,21 @@ External ">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2019-06-04
+                    2019-07-16
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        695
+                        317
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        3 Min
+                        1 Min
                     </div>
                     
                 
@@ -437,153 +435,25 @@ External ">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><h3 id="Volcabulary"><a href="#Volcabulary" class="headerlink" title="Volcabulary"></a>Volcabulary</h3><p>Tree: A connected, acycinc, undirected graph.</p>
-<p>Degree of node: The number of children of a node </p>
-<p>External node: leaves</p>
-<p>Internal node: other nodes</p>
-<p>Path: a unique, non-repeating path from r to n (we can use this sequence to define descendents and ancestors)</p>
-<p>Depth(level)</p>
-<p>Maximum depth = height</p>
-<p>Path length: the sum of the levels of all nodes</p>
-<p>External path length: the sum of the levels of external nodes</p>
-<p>Internal path length: the sum of the levels of internal nodes</p>
-<h3 id="Representations"><a href="#Representations" class="headerlink" title="Representations"></a>Representations</h3><p><strong>Root - down </strong></p>
-<p>key implementation: siblings and children (degree!)</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">treeSum</span><span class="token punctuation">(</span>Tree<span class="token operator">&lt;</span>T<span class="token operator">></span> tree<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">int</span> sum<span class="token punctuation">;</span>
-  sum <span class="token operator">=</span> tree<span class="token punctuation">.</span><span class="token function">label</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> tree<span class="token punctuation">.</span><span class="token function">degree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">)</span>
-    sum <span class="token operator">+=</span> <span class="token function">treeSum</span><span class="token punctuation">(</span>T<span class="token punctuation">.</span><span class="token function">child</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+                <p>循环不变式是让循环成立的一个statement，其必须具备三个性质：</p>
+<ol>
+<li>初始(Initialization)：在循环开始（第一次迭代）之前，它为真</li>
+<li>保持(Maintenance)：如果循环的某次迭代之前它为真，那么下次迭代之前它仍为真。</li>
+<li>终止(Termination)：当循环终止时（在某种条件下），不变式为我们提供一个有用的性质，该性质有助于证明算法是正确的。</li>
+</ol>
+<h3 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h3><p>对于插入排序来说，“A[1, …, j - 1]是有序的”这一statement是它的循环不定式。</p>
+<p>初始：在进行第一次循环之前(j = 2)，因为仅有单个元素A[1]，因此A[1,…, j - 1]一定是有序的。</p>
+<p>保持：因为循环将循环中的每一元素向右移动，直到此次插入的A[j]到恰当的元素。因此我们可以保证，从A[1,…, j - 1]一定是有序的。</p>
+<p>终止：for循环终止的条件是j超出A的长度。因为每次j都是增加1，因此必会发生j&gt;A.length。那么整个数组A[1, …, j]一定是有序的</p>
+<pre class=" language-pseudocode"><code class="language-pseudocode">Insertion-Sort(A)
+  for j = 2 to A.length
+      key = A[j]
+      i = j - 1
+      while i > 0 and A[i] > key
+          A[i + 1] = A[i]
+          i = i - 1
+      A[i + 1] = key
 </code></pre>
-<p><strong>Leaf - up</strong></p>
-<p>key implementation: parent</p>
-<p>Array representation (binary tree):</p>
-<ul>
-<li>parent for k-th node: (k-1)/2</li>
-<li>left child for k-th node: 2k + 1</li>
-<li>right child for k-th node: 2k + 2</li>
-</ul>
-<h3 id="Tree-Traversals"><a href="#Tree-Traversals" class="headerlink" title="Tree Traversals"></a>Tree Traversals</h3><p>Traversals in an iterative way</p>
-<p>In Java, we implement tree by an array. Thus, we must visit the root firstly, then, we visit its left child and its right child.  (If one child is null, it will show null.) </p>
-<p>If the array has the length n, we know the height of the tree is logn. </p>
-<p><strong>Preorder</strong> (DFS)</p>
-<p>Used to create a copy of the tree</p>
-<p>Root - Left -Right </p>
-<p>It is in the same order of the array.</p>
-<p>对于每一次visit：</p>
-<p>1.首先将其value加入到输出队列中</p>
-<p>2.检查left child，如果不为空，visit left</p>
-<p>3.检查right child，如果不为空，visit right</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  TreeNode node <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  preorder<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>N-ary</p>
-<pre class=" language-java"><code class="language-java">        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Node node <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            preorder<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            Collections<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span>Node c <span class="token operator">:</span> node<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-</code></pre>
-<p><strong>Inorder</strong></p>
-<p>In inorder sequence, we can find out all elements on left side of ‘Root’ are in left subtree and elements onright side of ‘Root’ are in right subtree.</p>
-<p>In BST, the inorder sequence gives nodes in non-decreasing order. </p>
-<p>Left - Root - Right </p>
-<p>对于每一次visit:</p>
-<p>1.如果有left child，将left child加入到stack中，visit left child，直到没有left child</p>
-<p>2.将value加入到array中</p>
-<p>3.如果有right child，visit right child（然后重复第一步）</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">while</span><span class="token punctuation">(</span>node <span class="token operator">!=</span> null <span class="token operator">||</span> <span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">while</span><span class="token punctuation">(</span>node <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    node <span class="token operator">=</span> node<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-     TreeNode visitedNode <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  inorder<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>visitedNode<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  node <span class="token operator">=</span> visitedNode<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p><strong>Postorder</strong> (reverse of preorder)</p>
-<p>Used to delete the tree</p>
-<p>Left - Right - Root </p>
-<p>对于每一次visit：</p>
-<p>1.当node不为空时，将node.right和node加入到stack中，node = node.left</p>
-<p>2.从stack中取第一个node，如果node.right != null并且node.right = stack.peek()，使node等于stack的第一个node，并且将原node放回到stack；否则，把node加入到输出队列中并使其为空</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">while</span><span class="token punctuation">(</span>node <span class="token operator">!=</span> null <span class="token operator">||</span> <span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>node <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-                node <span class="token operator">=</span> node<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-            TreeNode visited <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            TreeNode tmp <span class="token operator">=</span> null<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>tmp <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span> 
-
-            <span class="token keyword">if</span><span class="token punctuation">(</span>visited<span class="token punctuation">.</span>right <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> visited<span class="token punctuation">.</span>right <span class="token operator">==</span> tmp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                node <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>visited<span class="token punctuation">)</span><span class="token punctuation">;</span>     
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                postorder<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>visited<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-</code></pre>
-<p>Reverse of preorder</p>
-<pre class=" language-java"><code class="language-java">        Stack<span class="token operator">&lt;</span>TreeNode<span class="token operator">></span> stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            TreeNode node <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            postorder<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-            <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        Collections<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span>postorder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>N-ary </p>
-<pre class=" language-java"><code class="language-java">        Stack<span class="token operator">&lt;</span>Node<span class="token operator">></span> stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Node node <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            postorder<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            <span class="token keyword">for</span><span class="token punctuation">(</span>Node c <span class="token operator">:</span> node<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                stack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        Collections<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span>postorder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p><strong>Level Traversal</strong></p>
-<p>level traversal: all of them use <strong>Queue</strong> class to implement (BFS)</p>
-<p>zigzag traversal - set a flag to decide the adding order</p>
-<p><strong>Vertical Traversal</strong></p>
-<p><strong>Tree Construction</strong></p>
-<p><strong>Preorder + Inorder</strong></p>
-<p><strong>Inorder + Postorder</strong></p>
-<p><strong>Postorder + Preorder</strong></p>
 
             </div>
             <hr/>
@@ -742,9 +612,9 @@ External ">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Tree》
+                    《循环不变式(Loop Invariant)与算法正确性》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/06/04/tree/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/16/loopinvariant/" property="cc:attributionName"
                rel="cc:attributionURL">
                 Mie
             </a> is licensed under a
@@ -784,70 +654,33 @@ External ">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2019/06/06/CodingStyle/">
+                <a href="/2019/07/16/loopinvariant/">
                     <div class="card-image">
                         
-                        <img src="/images/language.jpg" class="responsive-img" alt="CodingStyle(Updated Java Google Coding Style)">
                         
-                        <span class="card-title">CodingStyle(Updated Java Google Coding Style)</span>
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="循环不变式(Loop Invariant)与算法正确性">
+                        
+                        <span class="card-title">循环不变式(Loop Invariant)与算法正确性</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java Coding StyleBased on Google Java Coding Style, I took some notes about these hard and fast rules. 
-Class Declaratio
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-06-05
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/CodingBetter/" class="post-category" target="_blank">
-                                    CodingBetter
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/05/01/DFS/">
-                    <div class="card-image">
-                        
-                        <img src="/images/ds.jpg" class="responsive-img" alt="Bread-First-Search and Depth-First-Search">
-                        
-                        <span class="card-title">Bread-First-Search and Depth-First-Search</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Graph一般图算法的输入：|V| 和 |E| （G = (V, E)）图的表示：
+                            循环不变式是让循环成立的一个statement，其必须具备三个性质：
 
-链表：多用于稀疏图，即|E|远小于|V|^2。对于有向图来说，所有链表长度和为|E|；对于无向图来说，所有链表长度和为2|E|。链表占用空间O(V+E)。
+初始(Initialization)：在循环开始（第一次迭代）之前，它为真
+保持(Maintenance)：如果循环的某次迭代之前它为真，那么下次迭代之前它仍为真。
+终
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-16
                             </span>
                         <span class="publish-author">
                             
@@ -861,6 +694,7 @@ Class Declaratio
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -868,16 +702,55 @@ Class Declaratio
                         <span class="chip bg-color">Algorithm</span>
                     </a>
                     
-                    <a href="/tags/BFS/" target="_blank">
-                        <span class="chip bg-color">BFS</span>
-                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/06/20/wildSaturday/">
+                    <div class="card-image">
+                        
+                        <img src="/images/wild.jpg" class="responsive-img" alt="周六野 + 林芊妤 健身计划">
+                        
+                        <span class="card-title">周六野 + 林芊妤 健身计划</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            参考豆瓣鹅组原帖：https://www.douban.com/group/topic/138221315/
+Fat Burn Everyday下面是筛选出来每天一定会做的四个视频(update 2019/07/08)
+
+矫正假胯宽（周六野
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-06-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/LivingBetter/" class="post-category" target="_blank">
+                                    LivingBetter
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
                     
-                    <a href="/tags/DFS/" target="_blank">
-                        <span class="chip bg-color">DFS</span>
-                    </a>
-                    
-                    <a href="/tags/Graph/" target="_blank">
-                        <span class="chip bg-color">Graph</span>
+                    <a href="/tags/Personal/" target="_blank">
+                        <span class="chip bg-color">Personal</span>
                     </a>
                     
                 </div>
