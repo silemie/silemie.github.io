@@ -436,7 +436,7 @@ Web ServerWeb Server 基本原理当我们在浏览器浏览网页的时候，�
 <h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><h3 id="Web-Server-基本原理"><a href="#Web-Server-基本原理" class="headerlink" title="Web Server 基本原理"></a>Web Server 基本原理</h3><p>当我们在浏览器浏览网页的时候，浏览器会先请求DNS Server，获得请求站点的IP Address，然后发送一个HTTP Request给该IP Address对应的主机，接着就会收到该地址回传的HTTP Response，而浏览器经过渲染后，将网页以一定形式呈现给我们。在此过程之中等待请求作出响应的主机，就是我们所说的Web Server。</p>
 <p>更详细地看，Web Server是一台物理服务器上的一台网络服务器（也可以理解为一个程序），它二十四小时永久等待Client（浏览器或者任何使用HTTP协议的软件）发送请求，并在接受请求之后，生成相应的响应回传给Client。Web Server 和 Client之间使用的协议是HTTP，因此我们也将其称为HTTP Server。</p>
 <p>Web Server能向Client提供文档，也可以放置网站文件、数据文件，供客户端浏览与下载。目前在UNIX和LINUX平台下最主流的Web Server是Apache和Nginx。</p>
-<p><img src alt="Web Server"></p>
+<p><img src="/images/web.png" alt="Web Server"></p>
 <p>Web Server的工作原理可以分为四个步骤：<strong>建立连接、请求过程、应答过程以及关闭连接</strong>。</p>
 <ol>
 <li>建立连接：Client通过TCP/IP协议建立到Server的TCP连接</li>
@@ -497,14 +497,14 @@ size_t n <span class="token operator">=</span> <span class="token keyword">sizeo
 </code></pre>
 <p>在terminal运行server后，我们可以通过<a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888/</a> 来访问页面（会显示一行“hello world”）。</p>
 <h3 id="Socket-amp-HTTP"><a href="#Socket-amp-HTTP" class="headerlink" title="Socket &amp; HTTP"></a>Socket &amp; HTTP</h3><p>让我们再多来谈谈URL，下图是它的基本结构，它告诉了客户端需要连接的web server和以及到达后需要访问的服务的页面（路径）。</p>
-<p><img src alt="url基本结构"></p>
+<p><img src="/images/Web_address.png" alt="url基本结构"></p>
 <p>在客户端发送HTTP请求之前，它会与服务器建立一条TCP连接，然后通过该TCP连接发送一个HTTP Request并且收到HTTP Response。而建立TCP连接会使用Sockets，下图用了telnet指令来手动模拟该过程。</p>
-<p><img src alt="Socket"></p>
+<p><img src="/images/socket.png" alt="Socket"></p>
 <p>建立TCP Connection后，客户端将发送HTTP Request，下图是请求的基本结构。</p>
-<p><img src alt="HTTP request"></p>
+<p><img src="/images/request.png" alt="HTTP request"></p>
 <p>HTTP请求包含一个Action（GET），Path（/hello）以及HTTP Version（HTTP/1.1）。</p>
 <p>而服务器返回的HTTP Response的基本结构如下：</p>
-<p><img src alt="HTTP response"></p>
+<p><img src="/images/response.png" alt="HTTP response"></p>
 <p>HTTP响应将包含一行Header，其包括了Version 与 Status Code，接下来空一行，然后是HTTP Response Body。</p>
 
             </div>
